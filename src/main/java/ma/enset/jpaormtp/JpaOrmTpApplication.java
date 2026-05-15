@@ -38,6 +38,9 @@ public class JpaOrmTpApplication {
              products.forEach(pr -> {
                System.out.println(pr.toString());
              });
+             //consulter un produit pa nom
+            System.out.println(productRepository.findByNameIgnoreCase("comp"));
+
 
         };
     }
