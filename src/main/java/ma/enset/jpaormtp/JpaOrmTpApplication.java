@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.util.List;
+import java.util.Optional;
 
 @SpringBootApplication
 public class JpaOrmTpApplication {
@@ -40,6 +41,24 @@ public class JpaOrmTpApplication {
              });
              //consulter un produit pa nom
             System.out.println(productRepository.findByNameIgnoreCase("comp"));
+
+            System.out.println("Mettre a jour un produit");
+
+          productRepository.findById(1L).ifPresent(pr -> {
+                pr.setPrice(5000.0);
+                pr.setQuantity(10);
+                productRepository.save(pr);
+            });
+
+            productRepository.findAll()
+                    .forEach(System.out::println);
+
+            System.out.println("supprimer");
+
+            productRepository.deleteById(1L);
+
+            productRepository.findAll()
+                    .forEach(System.out::println);
 
 
         };
